@@ -17,7 +17,11 @@ const nameSchema = new Schema<Name>({
 
 const guardianSchema = new Schema<Guardian>({
     name:{type:String, required:true},
-    relation: ["father", "mother", "elder brother", "elder sister"],
+    relation:{
+        type:String,
+        enum: ["father", "mother", "elder brother", "elder sister"],
+        required:true
+    },
     profession:{type:String, required:true},
     contact:{type:String, required:true},
     caddress:{type:String, required:true},
@@ -28,17 +32,28 @@ const guardianSchema = new Schema<Guardian>({
 const studentSchema = new Schema<Student>({
     id:{type: String},
     name:nameSchema,
-    gender:['male', 'female'],
+    gender:{
+        type:String,
+        enum:['male', 'female'],
+        required:true
+    },
     email: {type: String, required:true},
     contact:{type: String, required:true},
     DOB:{type: String, required:true},
     econtact:{type: String, required:true},
-    bgroup:["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"],
+    bgroup:{
+        type:String,
+        enum:["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
+    },
     caddress:{type:String, required:true},
     paddress:{type:String},
     legalGuardian:guardianSchema,
     profileImage:{type:String},
-    isActive:['Active','Blocked']
+    isActive:{
+        type:String,
+        enum:['Active','Blocked'],
+        required:true
+    }
 
 })
 
